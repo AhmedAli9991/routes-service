@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package routes;
+
+// Specify the Go package for the generated code
+option go_package = "./";
+
+service RoutesService {
+    rpc CreateRoute(Route) returns (RouteResponse);
+    rpc GetRoute(RouteID) returns (Route);
+    rpc UpdateRoute(Route) returns (RouteResponse);
+    rpc DeleteRoute(RouteID) returns (RouteResponse);
+}
+
+message Route {
+    int64 id = 1;
+    string user_id = 2;
+    string description = 3;
+    string geojson = 4;  // GeoJSON string to represent route geometry
+}
+
+message RouteID {
+    int64 id = 1;
+}
+
+message RouteResponse {
+    string message = 1;
+}
